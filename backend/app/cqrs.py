@@ -304,7 +304,7 @@ def list_events(db: Session, run_id: UUID) -> list[EventStore]:
     stmt = (
         select(EventStore)
         .where(EventStore.aggregate_id == run_id)
-        .order_by(EventStore.version.desc())
+        .order_by(EventStore.version.asc())
     )
     return list(db.scalars(stmt).all())
 
